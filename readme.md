@@ -1,0 +1,1 @@
+kata nya ini projek iseng buat app note pake express dan terintregrasi ke DB(posgres dan redis)
