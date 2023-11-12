@@ -1,12 +1,15 @@
 import express, { Application } from "express";
-//import NoteHandler from "../src/handlers/notesHandler";
+import NotesHandler from "./handlers/notesHandler";
+
 
 const app: Application = express();
 const PORT: number = 8080;
 
 app.use(express.json());
 
-app.get("/api/notes", );
+const notesHandler = new NotesHandler();
+
+app.get("/api/notes", notesHandler.getNotes);
 app.get("/api/notes/:id", );
 app.post("/api/notes", );
 app.put("/api/notes", );

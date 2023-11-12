@@ -13,4 +13,4 @@ export class NoteEntity extends Model {
 
 Model.knex(knexInstance);
 
-export type note = ModelObject<NoteEntity>;
+export type Note = ModelObject<NoteEntity>;
