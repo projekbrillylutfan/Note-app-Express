@@ -10,6 +10,15 @@ class NotesRepository {
         const listNoteById = await NoteEntity.query().where("id", queryId);
         return listNoteById;
     }
+
+    static async createNote(note: Note): Promise<Note> {
+        const createdNote = await NoteEntity.query().insert({
+            title: note.title,
+            content: note.content,
+        });
+
+        return createdNote;
+    }
 }
 
 export default NotesRepository;

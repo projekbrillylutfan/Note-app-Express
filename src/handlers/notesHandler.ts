@@ -43,6 +43,34 @@ class NotesHandler {
         res.status(200).send(response);
       }
     }
+
+    async createNote(req: Request, res: Response) {
+      const payload: NoteRequest = req.body;
+      
+      if (!(payload.title && payload.content)) {
+        const response: DefaultResponse = {
+          status: "BAD_REQUEST",
+          message: "Field Tidak Boleh Kosong",
+          data: {
+            created_car: null,
+          },
+        };
+  
+        return res.status(400).send(response); 
+      } else {
+        const createedNote: Note = await NoteService.createNote(payload);
+
+        const response: DefaultResponse = {
+          status: "CREATED",
+          message: "Data Note Berhasil Ditambahkan",
+          data: {
+            created_car: createedNote,
+          },
+        };
+    
+        res.status(201).send(response); 
+      }
+    }
 }
 
 export default NotesHandler;

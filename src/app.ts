@@ -11,7 +11,7 @@ const notesHandler = new NotesHandler();
 
 app.get("/api/notes", notesHandler.getNotes);
 app.get("/api/notes/:id", notesHandler.getNotesById);
-app.post("/api/notes", );
+app.post("/api/notes", notesHandler.createNote);
 app.put("/api/notes", );
 app.delete("/api/notes", );
 
