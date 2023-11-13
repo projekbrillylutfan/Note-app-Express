@@ -6,6 +6,11 @@ class NoteService {
         let listNotes: Note[] = await NotesRepository.getNotes();
         return listNotes;
     }
+
+    static async getNotesById(queryId: number): Promise<Note[]> {
+        const listNote = await NotesRepository.getNotesById(queryId);
+        return listNote;
+    }
 }
 
 export default NoteService;
