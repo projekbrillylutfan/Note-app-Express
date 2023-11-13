@@ -5,6 +5,8 @@ export class NoteEntity extends Model {
   id?: bigint;
   title!: string;
   content!: string;
+  createAt?: Date;
+  updateAt?: Date;
 
   static get tableName() {
     return "notes";

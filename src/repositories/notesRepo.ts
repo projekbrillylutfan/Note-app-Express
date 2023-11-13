@@ -1,3 +1,4 @@
+import { Expression } from "objection";
 import { Note, NoteEntity } from "../models/entity/note";
 
 class NotesRepository {
@@ -15,6 +16,8 @@ class NotesRepository {
         const createdNote = await NoteEntity.query().insert({
             title: note.title,
             content: note.content,
+            createAt: note.createAt,
+            updateAt: undefined,
         });
 
         return createdNote;
