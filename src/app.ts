@@ -2,6 +2,7 @@ import express, { Application } from "express";
 import NotesHandler from "./handlers/notesHandler";
 
 
+
 const app: Application = express();
 const PORT: number = 8080;
 
