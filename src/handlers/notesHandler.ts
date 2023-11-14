@@ -13,7 +13,7 @@ class NotesHandler {
             status: "OK",
             message: "Sukses Menampilkan Data Mobil",
             data: {
-              cars: notesList,
+              notes: notesList,
             },
           };
       
@@ -37,7 +37,7 @@ class NotesHandler {
           status: "OK",
           message: "Sukses Menampilkan Data Note",
           data: {
-            cars: noteList,
+            notes: noteList,
           },
         };
         res.status(200).send(response);
@@ -52,7 +52,7 @@ class NotesHandler {
           status: "BAD_REQUEST",
           message: "Field Tidak Boleh Kosong",
           data: {
-            created_car: null,
+            created_note: null,
           },
         };
   
@@ -64,11 +64,71 @@ class NotesHandler {
           status: "CREATED",
           message: "Data Note Berhasil Ditambahkan",
           data: {
-            created_car: createedNote,
+            created_note: createedNote,
           },
         };
     
         res.status(201).send(response); 
+      }
+    }
+
+    async updateNoteById(req: Request, res: Response) {
+      const queryId: number = parseInt(req.params.id);
+      const payload: NoteRequest = req.body;
+
+      if (!(payload.title && payload.title)) {
+        const response: DefaultResponse = {
+          status: "BAD_REQUEST",
+          message: "Field Tidak Boleh Kosong",
+          data: {
+            updated_note: null,
+          },
+        };
+        res.status(400).send(response);
+      } else {
+        const updateNote: Note | null = await NoteService.updateNoteById(queryId, payload);
+        if (!updateNote) {
+          const Response: DefaultResponse = {
+            status: "ERROR",
+            message: "Data Note Tidak Ditemukan",
+            data: null,
+          };
+          return res.status(404).send(Response);
+        } else {
+          const response: DefaultResponse = {
+            status: "UPDATED",
+            message: "Data Note Berhasil Diupdate",
+            data: {
+              old_car: updateNote,
+              updated_car: payload,
+            },
+          };
+          res.status(200).send(response);
+        }
+      }
+    }
+
+    async deleteNoteById(req: Request, res: Response) {
+      const queryId: number = parseInt(req.params.id);
+      const deleteNote: Note | null = await NoteService.deleteNoteById(queryId);
+
+      if (!deleteNote) {
+        const Response: DefaultResponse = {
+          status: "ERROR",
+          message: "Data Note Tidak Ditemukan",
+          data: null,
+        };
+        return res.status(404).send(Response);
+      } else {
+        const response: DefaultResponse = {
+          status: "DELETED",
+          message: "Data Note Berhasil Dihapus",
+          data: {
+            deleted_note: deleteNote,
+          },
+        };
+    
+        res.status(200).send(response);
       }
     }
 }

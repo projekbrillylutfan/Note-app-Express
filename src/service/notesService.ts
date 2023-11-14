@@ -23,6 +23,20 @@ class NoteService {
 
         return createdNote;
     }
+
+    static async updateNoteById(queryId: number, note: NoteRequest): Promise<Note | null> {
+        const noteToUpdate: Note = {
+            title: note.title,
+            content: note.content,
+        }
+        const updateNote = await NotesRepository.updateNoteById(queryId, noteToUpdate);
+        return updateNote;
+    }
+
+    static async deleteNoteById(queryId: number): Promise<Note | null>{
+        const deleteNote = await NotesRepository.deleteNoteById(queryId)
+        return deleteNote;
+    }
 }
 
 export default NoteService;
