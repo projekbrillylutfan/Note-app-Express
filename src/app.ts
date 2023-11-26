@@ -20,6 +20,12 @@ app.delete("/api/notes/:id", notesHandler.deleteNoteById);
 
 // categories routes
 
+app.get("/api/notes/categories", )
+app.get("/api/notes/categories/:id")
+app.post("/api/notes/categories")
+app.put("/api/notes/categories/:id")
+app.delete("/api/notes/categories/:id")
+
 
 // user routes
 

@@ -4,6 +4,7 @@ fitur yang akan dibuat
 
 -  notes (collection) (yang akan dibuat)
 --- _id
+--- id_user
 --- title
 --- content
 --- createdAt
@@ -18,4 +19,4 @@ fitur yang akan dibuat
 - categories (collection) - comming soon
 --- _id
 --- name
---- notes (referensi ke notes)
+--- id_note (referensi ke notes)

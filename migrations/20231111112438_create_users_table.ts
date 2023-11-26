@@ -5,8 +5,12 @@ export async function up(knex: Knex): Promise<void> {
     table.bigIncrements("id").primary();
     table.string("title").notNullable();
     table.string("content").notNullable();
-    table.timestamp("createdAt").defaultTo(knex.fn.now());
-    table.timestamp("updatedAt").defaultTo(knex.fn.now());
+    table.bigInteger("create_by");
+    table.bigInteger("update_by");
+    table.bigInteger("delete_by");
+    table.timestamp("create_at").defaultTo(knex.fn.now());
+    table.timestamp("update_at").defaultTo(knex.fn.now());
+    table.timestamp("delete_at").defaultTo(knex.fn.now());
   });
 }
 
